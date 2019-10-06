@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'Tetris';
+    src: url(fonte/PressStart2P-Regular.ttf);
+}
+
+body{
+    font-family: 'Tetris', cursive;
+}
+
+p{
+    padding: 0px;
+    margin: 10px 0px 10px 18px;
+    text-align: left;
+}
+
+div{
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+.navbar .modo-game{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-align: center;
+    
+}
+
+.navbar .modo-game > li{
+    display: list-item;
+    box-sizing: border-box;
+    padding: 10px 15px;
+}
+
+.navbar .modo-game > li > a{
+    color: black;
+    text-decoration: none;
+    font-size: 18pt;
+}
+
+.game-container > div{
+    float: left;
+    margin: auto;
+    text-align: center;
+}
+
+#tetris{
+    background: rgba(40, 69, 122,0.5);
+    border:2px solid black;
+}
+
+#tetris.modo-10x20{
+    height:500px;
+    width:250px;
+}
+#tetris.modo-22x44{
+    height:1000px;
+    width:500px;
+}
+
+.lateral-esquerda{
+    height:505px;
+    width:300px;
+    border-radius: 150px 0px 0px 150px;
+    background-color: background;
+    float: left;
+}
+
+.lateral-direita{
+    height:505px;
+    width:300px;
+    border-radius: 0px 150px 150px 0px;
+    background-color: background;
+    float: left;
+}
+
+.buttom{
+    border: 0px;
+    padding: 0px;
+    height: 40px;
+    width: 40px;
+    border-radius:50%;
+}
+
+img{
+    border-radius:50%;
+    height: 40px;
+    width: 40px;
+}
+
+.placar{
+    padding-top: 22px;
+    margin-left: 15px;
+    width: 150px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border:2px solid white;
+}
