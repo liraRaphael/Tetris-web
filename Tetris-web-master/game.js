@@ -111,6 +111,8 @@ const TAGCANVAS = 'tetris'; // guarda o nome da id do canvas
  * 
  * 
  */
+ini="jvb";
+r1 = 0; r2 = 0; r3 = 0;r4 = 0; r5 = 0; 
 tabuleiro = []; //guardará todos os elementos que já subiram
 proximo = -1; // guarda o indice do proximo elemento a se jogar
 tempoPartida = 0; // guarda o tempo de partida
@@ -267,6 +269,7 @@ function pausaGame(){
 function gameOver(){
     pausaGame();
     status = GAMEOVER;
+    rankSet(pontuacao);
 }
 
 
@@ -624,6 +627,26 @@ function musica(){
         x.play();
         y.setAttribute("src","image/som.jpg")
     }
+}
+
+function rankSet(pontos){
+    
+    if(pontos > r1){
+        r1 = pontos;
+        document.getElementById("r1").innerHTML=ini+"..."+r1;
+    }else if(pontos > r2){
+        r2 = pontos;
+        document.getElementById("r2").innerHTML=ini+"..."+r2;
+        }else if(pontos > r3){
+            r3 = pontos;
+            document.getElementById("r3").innerHTML=ini+"..."+r3;
+            }else if(pontos > r4){
+                r4 = pontos;
+                document.getElementById("r4").innerHTML=ini+"..."+r4;
+                }else if(pontos > r5){
+                    r5 = pontos;
+                    document.getElementById("r5").innerHTML=ini+"..."+r5;
+                    }
 }
 //tratará os movimentos dos bloquinhos
 function moveBloco(tipo){

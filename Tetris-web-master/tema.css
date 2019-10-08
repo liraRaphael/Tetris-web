@@ -55,8 +55,8 @@ div{
     width:250px;
 }
 #tetris.modo-22x44{
-    height:1000px;
-    width:500px;
+    height:500px;
+    width:250px;
 }
 
 .lateral-esquerda{
@@ -98,4 +98,28 @@ img{
     color: white;
     text-align: center;
     border:2px solid white;
+}
+
+.rank{
+    padding: 0px;
+    margin-left: 15px;
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+}
+
+p.ranked{
+    font-size: 10pt;
+    margin: 12px 0px 0px 12px;
+}
+
+#r1{
+    color: gold;
+}
+
+#r5{
+    color: red;
 }
