@@ -161,6 +161,9 @@ function carregaConfig(){
 
     var e = $("#"+TAGCANVAS);
 
+
+    clearInterval(config.loop);
+
     //verica o tamanho do jogo
     if(e.hasClass('modo-10x20')){
         
@@ -195,6 +198,9 @@ function carregaConfig(){
 
     //gera tabuleiro inicial
     escreveTabuleiro();
+    
+    
+    rodarGame();
 
     
 
@@ -237,11 +243,13 @@ function diminuirIntervalo(){
 
 //fazer o game startar/continuar apÃ³s pausa/inicio
 function rodarGame(){ 
-
+       
+      
     //roda o looping do cronometro
     config.cronometro = setInterval(
         function(){ 
             ++tempoPartida;
+            //colocar a função imprimir
         },1000
     );
 
@@ -481,9 +489,12 @@ function gravaTabuleiro(matriz){
             if(matriz[i][j] !== false)
                 tabuleiro[elemAtual.posicao.topo+i][elemAtual.posicao.esquerda+j] = elemAtual.cor ;
             
+            
         }
     }
 
+    
+    
     //vÃª se gerou pontos
     verificaLinha(linhas);
 
@@ -731,7 +742,7 @@ $(document).ready(function(){
 
     //inicializa as variaveis do game
     carregaConfig();
-    rodarGame();
+    
 
 
     /**
@@ -746,7 +757,17 @@ $(document).ready(function(){
     $(window).on('keyup',function(e){
         moveBloco(e.keyCode);        
     });
-
-
-
+    
+    $("#tamanhoP").on('click',function(e){
+       $("#tetris").removeClass('modo-22x44').removeClass('modo-10x20').addClass('modo-10x20');
+        carregaConfig();
+    });
+    $("#tamanhoG").on('click',function(e){
+       $("#tetris").removeClass('modo-22x44').removeClass('modo-10x20').addClass('modo-22x44');
+        carregaConfig();
+    });
 });
+
+function tamanhoTabuleiro(){
+    
+}

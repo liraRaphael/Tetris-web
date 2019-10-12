@@ -12,8 +12,8 @@
             <nav>
                 <ul class="modo-game">
                     <li><strong>Novo jogo:</strong></li>
-                    <li><a data-tipo="10x20" href="#">10x20</a></li>
-                    <li><a data-tipo="22x44" href="#">22x44</a></li>
+                    <li><a data-tipo="10x20" id="tamanhoP" href="#">10x20</a></li>
+                    <li><a data-tipo="22x44" id="tamanhoG" href="#">22x44</a></li>
                 </ul>
             </nav>
         </header>
@@ -33,25 +33,29 @@
                 </button><br><br><br><br><br><br><br><br><br><br><br><br>
                 <br><br><br><br>
                 
-                <button class="buttom" onclick="moveBloco(CIMA)" type="button">
-                    <img src="image/seta-top.jpg">
-                </button><br><br>
-                
-                <button class="buttom" onclick="moveBloco(ESQUERDA)" type="button">
-                    <img src="image/seta-left.jpg">
-                </button>
-                
-                <button class="buttom" onclick="moveBloco(ESPACO)" type="button">
-                    <img src="image/seta-circ.jpg">
-                </button>
-                
-                <button class="buttom" onclick="moveBloco(DIREITA)" type="button">
-                    <img src="image/seta-right.jpg">
-                </button><br><br>
-                
-                <button class="buttom" onclick="moveBloco(BAIXO)" type="button" style="margin-bottom: 10px;">
-                    <img src="image/seta-bottom.jpg">
-                </button>
+                <div class="fundo">
+                    
+                    <button class="buttom" onclick="moveBloco(CIMA)" type="button">
+                        <img src="image/seta-top.jpg">
+                    </button><br><br>
+
+                    <button class="buttom" onclick="moveBloco(ESQUERDA)" type="button">
+                        <img src="image/seta-left.jpg">
+                    </button>
+
+                    <button class="buttom" onclick="moveBloco(ESPACO)" type="button">
+                        <img src="image/seta-circ.jpg">
+                    </button>
+
+                    <button class="buttom" onclick="moveBloco(DIREITA)" type="button">
+                        <img src="image/seta-right.jpg">
+                    </button><br><br>
+
+                    <button class="buttom" onclick="moveBloco(BAIXO)" type="button" style="margin-bottom: 10px;">
+                        <img src="image/seta-bottom.jpg">
+                    </button>
+                    
+                </div>
                 
             </div>
 
