@@ -2,8 +2,8 @@
  * 
  * - OBSERVAÃ‡Ã•ES GERAIS:
  * 
- *  A MATRIZ PARA ACESSO DO TABULEIRO SERÃ? VARIAVEL[X][Y]
- *  O TOPO DO TABULEIRO TEM INDEX = 0, OU SEJA, A BASE TEM VALOR MÃ?XIMO
+ *  A MATRIZ PARA ACESSO DO TABULEIRO SERï¿½? VARIAVEL[X][Y]
+ *  O TOPO DO TABULEIRO TEM INDEX = 0, OU SEJA, A BASE TEM VALOR Mï¿½?XIMO
  * 
  * 
  * 
@@ -185,10 +185,14 @@ function carregaConfig(){
     //tempo para que as peÃ§as se movam
     config.timeout = 1000;
 
+    //inicializa o jogo
     pontuacao = 0;
     tempoPartida = 0;
     proximo = - 1;
     status = NOVO;
+
+    // inicia a pontuaÃ§Ã£o
+    $("#pontos").html(pontuacao);
 
     //gera o tabuleiro original do game
     tabuleiro = inicializaTabuleiro();
@@ -249,7 +253,7 @@ function rodarGame(){
     config.cronometro = setInterval(
         function(){ 
             ++tempoPartida;
-            //colocar a função imprimir
+            //colocar a funï¿½ï¿½o imprimir
         },1000
     );
 
@@ -313,18 +317,24 @@ function gameOver(){
     }
 
     //se houver pontos
-    if(pontos.length){
-
-        var elementos = [];
-        for(i=0;i<config.limiteLargura;i++){
-            elementos[elementos.length] = (false);
-        }
+    if(pontos.length){        
 
         //remove a linha, adiciona ao inicio da lista
         for(i=0;i<pontos.length;i++){
             tabuleiro.splice(pontos[i],1);
-            tabuleiro.unshift(elementos);
+            //tabuleiro.unshift(elementos);
+            //delete tabuleiro[pontos[i]];
+            tabuleiro.unshift([]);
         }
+
+        for(i=0;i<pontos.length;i++){
+            tabuleiro[i] = [];
+            for(j=0;j<config.limiteLargura;j++){
+                tabuleiro[i][j] = (false);
+            }
+        }
+
+        
 
         pontuacao += ((PONTO*pontos.length)*pontos.length);
         document.getElementById("pontos").innerHTML = pontuacao;
@@ -486,10 +496,13 @@ function gravaTabuleiro(matriz){
         for(var j = 0; j < matriz[i].length;j++){
 
             //verifica se o campo tem cor ou false
-            if(matriz[i][j] !== false)
-                tabuleiro[elemAtual.posicao.topo+i][elemAtual.posicao.esquerda+j] = elemAtual.cor ;
-            
-            
+            if(matriz[i][j] !== false){
+                topo =     elemAtual.posicao.topo+i;
+                esquerda = elemAtual.posicao.esquerda+j;
+
+                tabuleiro[topo][esquerda] = elemAtual.cor ;
+            }
+
         }
     }
 
