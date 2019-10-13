@@ -136,9 +136,3 @@ p.ranked{
     border-radius: 50%; 
     border: 2px solid white;
 }
-.game-container{
-    background: background;
-}
-button:focus{
-    outline: none;
-}
