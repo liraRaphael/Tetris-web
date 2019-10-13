@@ -161,6 +161,7 @@ function carregaConfig(){
 
     var e = $("#"+TAGCANVAS);
 
+    
 
     clearInterval(config.loop);
 
@@ -188,6 +189,8 @@ function carregaConfig(){
     //inicializa o jogo
     pontuacao = 0;
     tempoPartida = 0;
+    temporeal=0;
+    min=0;
     proximo = - 1;
     status = NOVO;
 
@@ -203,7 +206,7 @@ function carregaConfig(){
     //gera tabuleiro inicial
     escreveTabuleiro();
     
-    
+
     rodarGame();
 
     
@@ -253,6 +256,11 @@ function rodarGame(){
     config.cronometro = setInterval(
         function(){ 
             ++tempoPartida;
+            temporeal = tempoPartida%60;
+            document.getElementById("tempo").innerHTML= min+":"+temporeal;
+            if(tempoPartida%60==59){
+                min++;
+            }
             //colocar a fun��o imprimir
         },1000
     );
@@ -281,6 +289,7 @@ function pausaGame(){
 function gameOver(){
     pausaGame();
     status = GAMEOVER;
+    ini = document.forms["form"]["ini"].value;
     rankSet(pontuacao);
 }
 
@@ -472,7 +481,11 @@ function escreveTabuleiro(){
         tetris.fillStyle = 'black';
         tetris.font="2em Tetris";
         tetris.fillText("GAME",(config.larguraElemento*config.limiteLargura)/2,205,(config.larguraElemento*config.limiteLargura)/2);
-        tetris.fillText("OVER",(config.larguraElemento*config.limiteLargura)/2,255,(config.larguraElemento*config.limiteLargura)/2);
+        tetris.fillText("OVER",(config.larguraElemento*config.limiteLargura)/2,255,(config.larguraElemento*config.limiteLargura)/2);    
+    }
+
+    function show(){
+        var name = alert("Iniciais do jogador:","");
     }
 
     //caso dê gameouver - avise na tela
@@ -654,7 +667,6 @@ function musica(){
 }
 
 function rankSet(pontos){
-    
     if(pontos > r1){
         r1 = pontos;
         document.getElementById("r1").innerHTML=ini+"..."+r1;
