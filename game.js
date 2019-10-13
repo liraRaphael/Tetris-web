@@ -233,7 +233,7 @@ function diminuirIntervalo(){
     clearInterval(config.loop);
 
     if(config.timeout > 300)
-        config.timeout = Math.floor(config.timeout * 0.8);  
+        config.timeout = config.timeout - (Math.floor(pontuacao/500) * 100);  
 
     //roda o looping do game
     config.loop = setInterval(
@@ -322,8 +322,6 @@ function gameOver(){
         //remove a linha, adiciona ao inicio da lista
         for(i=0;i<pontos.length;i++){
             tabuleiro.splice(pontos[i],1);
-            //tabuleiro.unshift(elementos);
-            //delete tabuleiro[pontos[i]];
             tabuleiro.unshift([]);
         }
 
@@ -338,6 +336,8 @@ function gameOver(){
 
         pontuacao += ((PONTO*pontos.length)*pontos.length);
         document.getElementById("pontos").innerHTML = pontuacao;
+
+        diminuirIntervalo();
     }
 
     

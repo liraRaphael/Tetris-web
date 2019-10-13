@@ -18,69 +18,71 @@
             </nav>
         </header>
 
-        <section class="game-container">
+        <section>
 
-            <div class="lateral-esquerda">
+            <div class="game-container">
+                    <div class="lateral-esquerda">
                 
-                <br><br>
-                <button class="buttom" onclick="moveBloco(P)" type="button">
-                    <img id="pause" src="image/pause.jpg">
-                </button>
-                
-                <button class="buttom" onclick="musica()" type="button">
-                    <img id="som-image" src="image/sem-som.jpg"> 
-                    <audio id="som"  src="Tetris_theme.ogg"></audio>
-                </button><br><br><br><br><br><br><br><br><br><br><br><br>
-                <br><br><br><br>
-                
-                <div class="fundo">
-                    
-                    <button class="buttom" onclick="moveBloco(CIMA)" type="button">
-                        <img src="image/seta-top.jpg">
-                    </button><br><br>
-
-                    <button class="buttom" onclick="moveBloco(ESQUERDA)" type="button">
-                        <img src="image/seta-left.jpg">
-                    </button>
-
-                    <button class="buttom" onclick="moveBloco(ESPACO)" type="button">
-                        <img src="image/seta-circ.jpg">
-                    </button>
-
-                    <button class="buttom" onclick="moveBloco(DIREITA)" type="button">
-                        <img src="image/seta-right.jpg">
-                    </button><br><br>
-
-                    <button class="buttom" onclick="moveBloco(BAIXO)" type="button" style="margin-bottom: 10px;">
-                        <img src="image/seta-bottom.jpg">
-                    </button>
-                    
-                </div>
-                
-            </div>
-
-            <div class="game">
-                <canvas id="tetris" class="modo-10x20"></canvas>
-            </div>
-
-            <div class="lateral-direita">
-                <br><p>Pontuação</p><br>
-                
-                <div class="placar" id="pontos"></div>
-                
-                <div style="height: 50px"></div>
-                
-                <p>Rank<p/>
-                <div class="rank">
-    
-                    <p class="ranked" id="r1"></p><br>
-                    <p class="ranked" id="r2"></p><br>
-                    <p class="ranked" id="r3"></p><br>
-                    <p class="ranked" id="r4"></p><br>
-                    <p class="ranked" id="r5"></p><br>
-                    
-                </div>
-            </div> 
+                        <br><br>
+                        <button class="buttom" onclick="moveBloco(P)" type="button">
+                            <img id="pause" src="image/pause.jpg">
+                        </button>
+                        
+                        <button class="buttom" onclick="musica()" type="button">
+                            <img id="som-image" src="image/sem-som.jpg"> 
+                            <audio id="som"  src="Tetris_theme.ogg"></audio>
+                        </button><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br>
+                        
+                        <div class="fundo">
+                            
+                            <button class="buttom" onclick="moveBloco(CIMA)" type="button">
+                                <img src="image/seta-top.jpg">
+                            </button><br><br>
+        
+                            <button class="buttom" onclick="moveBloco(ESQUERDA)" type="button">
+                                <img src="image/seta-left.jpg">
+                            </button>
+        
+                            <button class="buttom" onclick="moveBloco(ESPACO)" type="button">
+                                <img src="image/seta-circ.jpg">
+                            </button>
+        
+                            <button class="buttom" onclick="moveBloco(DIREITA)" type="button">
+                                <img src="image/seta-right.jpg">
+                            </button><br><br>
+        
+                            <button class="buttom" onclick="moveBloco(BAIXO)" type="button" style="margin-bottom: 10px;">
+                                <img src="image/seta-bottom.jpg">
+                            </button>
+                            
+                        </div>
+                        
+                    </div>
+        
+                    <div class="game">
+                        <canvas id="tetris" class="modo-10x20"></canvas>
+                    </div>
+        
+                    <div class="lateral-direita">
+                        <br><p>Pontuação</p><br>
+                        
+                        <div class="placar" id="pontos"></div>
+                        
+                        <div style="height: 50px"></div>
+                        
+                        <p>Rank<p/>
+                        <div class="rank">
+            
+                            <p class="ranked" id="r1"></p><br>
+                            <p class="ranked" id="r2"></p><br>
+                            <p class="ranked" id="r3"></p><br>
+                            <p class="ranked" id="r4"></p><br>
+                            <p class="ranked" id="r5"></p><br>
+                            
+                        </div>
+                    </div> 
+            </div>            
 
         </section>
 
