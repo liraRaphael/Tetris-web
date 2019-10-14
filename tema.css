@@ -39,6 +39,18 @@ div{
     font-size: 18pt;
 }
 
+.game-container{
+    background: background;
+    display: flex;
+    border-radius: 300px;
+    border:2px solid black;
+}
+
+#tempo{
+    margin-top: 20px;
+}
+
+
 .game-container > div{
     float: left;
     margin: auto;
@@ -47,7 +59,7 @@ div{
 
 #tetris{
     background: rgba(40, 69, 122,0.5);
-    border:2px solid black;
+    border:8px solid #261563;
 }
 
 #tetris.modo-10x20{
@@ -63,7 +75,6 @@ div{
     height:505px;
     width:300px;
     border-radius: 150px 0px 0px 150px;
-    background-color: background;
     float: left;
 }
 
@@ -71,7 +82,7 @@ div{
     height:505px;
     width:300px;
     border-radius: 0px 150px 150px 0px;
-    background-color: background;
+    /**background-color: background;**/
     float: left;
 }
 
@@ -137,3 +148,35 @@ p.ranked:last-of-type{
     border: 2px solid white;
 }
 
+*:focus{
+    outline: None;
+}
+.botao-superior{
+    background:darkgray;
+    border: 3px solid black;
+    position: absolute;
+    height: 25px;
+    width: 150px;
+    text-align: center;
+    color: white;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+    padding: 10px 0 0 0;
+}
+.botao-superior *{
+    color:white;
+    text-decoration: none;
+}
+
+.bot-sp-esq{
+    top: 37px;
+    left: 256px;
+}
+.bot-sp-dir{
+    top: 37px;
+    right: 256px;
+}
+h2{
+    text-align: center;
+    padding-bottom: 10px;
+}
