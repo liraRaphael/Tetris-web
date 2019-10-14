@@ -117,11 +117,11 @@ p.ranked{
     margin: 12px 0px 0px 12px;
 }
 
-#r1{
+p.ranked:first-of-type{
     color: gold;
 }
 
-#r5{
+p.ranked:last-of-type{
     color: red;
 }
 

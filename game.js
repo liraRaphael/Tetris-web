@@ -111,17 +111,22 @@ const TAGCANVAS = 'tetris'; // guarda o nome da id do canvas
  * 
  * 
  */
-ini="jvb";
-r1 = 0; r2 = 0; r3 = 0;r4 = 0; r5 = 0; 
+
 tabuleiro = []; //guardará todos os elementos que já subiram
 proximo = -1; // guarda o indice do proximo elemento a se jogar
 tempoPartida = 0; // guarda o tempo de partida
-name;
+
+
+
 gameCanvas = null; //guarda o DOM do canvas
 tetris = null;  //trata o canvas
 
+rank = []; // guarda o rank
 pontuacao = 0; // guarda a pontuacao do jogo
 status = 0; // guarda o status atual do game
+nivel = 0; // guarda o nível em que o jogador está
+linhasEliminadas = 0;// guarda o total de linhas eliminadas
+
 
 elemAtual = {
     elemento:0,
@@ -162,7 +167,7 @@ function carregaConfig(){
     var e = $("#"+TAGCANVAS);
 
     
-
+    clearInterval(tempoPartida);
     clearInterval(config.loop);
 
     //verica o tamanho do jogo
@@ -189,10 +194,11 @@ function carregaConfig(){
     //inicializa o jogo
     pontuacao = 0;
     tempoPartida = 0;
-    temporeal=0;
-    min=0;
     proximo = - 1;
     status = NOVO;
+
+    nivel = 0;
+    linhasEliminadas = 0;
 
     // inicia a pontuação
     $("#pontos").html(pontuacao);
@@ -235,8 +241,10 @@ function inicializaTabuleiro(){
 function diminuirIntervalo(){
     clearInterval(config.loop);
 
+    nivel = Math.floor(pontuacao/500);
+
     if(config.timeout > 300)
-        config.timeout = config.timeout - (Math.floor(pontuacao/500) * 100);  
+        config.timeout = config.timeout - (nivel * 100);  
 
     //roda o looping do game
     config.loop = setInterval(
@@ -244,6 +252,25 @@ function diminuirIntervalo(){
             moveBloco(CIMA); 
         },config.timeout
     );
+
+}
+
+
+function converteTempo(tempo){
+    var retorno = '';
+    min = Math.floor(tempo/60);
+    if(min < 10)
+        retorno += "0";
+
+    retorno+=min;
+
+    seg = tempo%60;
+    retorno+= ":";
+    if(seg < 10)
+        retorno += "0";
+    retorno+=seg;
+
+    return retorno;
 
 }
 
@@ -256,11 +283,7 @@ function rodarGame(){
     config.cronometro = setInterval(
         function(){ 
             ++tempoPartida;
-            temporeal = tempoPartida%60;
-            document.getElementById("tempo").innerHTML= min+":"+temporeal;
-            if(tempoPartida%60==59){
-                min++;
-            }
+            $('#tempo').html(converteTempo(tempoPartida));
             //colocar a fun��o imprimir
         },1000
     );
@@ -289,8 +312,8 @@ function pausaGame(){
 function gameOver(){
     pausaGame();
     status = GAMEOVER;
-    ini = prompt("Iniciais do jogador");
-    rankSet(pontuacao);
+    nomeJogador = prompt("Iniciais do jogador");
+    rankSet(pontuacao,nomeJogador);
 }
 
 
@@ -341,10 +364,10 @@ function gameOver(){
             }
         }
 
-        
+        linhasEliminadas += pontos.length;
 
         pontuacao += ((PONTO*pontos.length)*pontos.length);
-        document.getElementById("pontos").innerHTML = pontuacao;
+        $("#pontos").html(pontuacao);
 
         diminuirIntervalo();
     }
@@ -536,7 +559,7 @@ function colisaoDireita(matriz){
         for(var j = 0; j < matriz[i].length;j++){
 
             if(
-                matriz[j] &&
+                matriz[i][j] &&
                 tabuleiro[elemAtual.posicao.topo+i][elemAtual.posicao.esquerda+j+1] !== false
             ){
                 colidiu = true;
@@ -564,7 +587,7 @@ function colisaoEsquerda(matriz){
         for(var j = 0; j < matriz[i].length;j++){
 
             if(
-                matriz[j] &&
+                matriz[i][j] &&
                 tabuleiro[elemAtual.posicao.topo+i][elemAtual.posicao.esquerda+j-1] !== false
             ){
                 colidiu = true;
@@ -666,23 +689,40 @@ function musica(){
     }
 }
 
-function rankSet(pontos){
-    if(pontos > r1){
-        r1 = pontos;
-        document.getElementById("r1").innerHTML=ini+"..."+r1;
-    }else if(pontos > r2){
-        r2 = pontos;
-        document.getElementById("r2").innerHTML=ini+"..."+r2;
-        }else if(pontos > r3){
-            r3 = pontos;
-            document.getElementById("r3").innerHTML=ini+"..."+r3;
-            }else if(pontos > r4){
-                r4 = pontos;
-                document.getElementById("r4").innerHTML=ini+"..."+r4;
-                }else if(pontos > r5){
-                    r5 = pontos;
-                    document.getElementById("r5").innerHTML=ini+"..."+r5;
-                    }
+function rankSet(pontos,nome){
+
+    rank[rank.length] = {
+        'ponto': pontos,
+        'nome': nome,
+        'nivel':nivel,
+        'linhasEliminadas':linhasEliminadas,
+        'tempo':tempoPartida,
+    };
+
+
+    // ordena por bolha
+    for(var i=0;i<rank.length;i++){
+        for(var j=0;j<i;j++){
+            if(rank[i].ponto > rank[j].ponto){
+                var temp = rank[j];
+                rank[j] = rank[i];
+                rank[i] = temp;
+            }
+        }
+    }
+
+    if(rank.length - 5 > 0){
+        rank.splice(i,rank.length - 5);
+    }
+
+    html = ""
+    for(var i=0;i<rank.length;i++){
+        html+= '<p class="ranked">'+rank[i].nome+"..."+rank[i].ponto+'</p><br>';
+    }
+
+    $(".rank").html(html);
+
+
 }
 //tratará os movimentos dos bloquinhos
 function moveBloco(tipo){
