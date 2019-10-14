@@ -200,6 +200,16 @@ function carregaConfig(){
     nivel = 0;
     linhasEliminadas = 0;
 
+
+    //exibe nivel
+    $("#nivel").html(nivel);
+
+    //exibe quantidade de linhas eliminadas
+    $("#linhasEliminadas").html(linhasEliminadas);
+
+    //exibe pontuação
+    $("#tempo").html(converteTempo(tempoPartida));
+
     // inicia a pontuação
     $("#pontos").html(pontuacao);
 
@@ -242,6 +252,10 @@ function diminuirIntervalo(){
     clearInterval(config.loop);
 
     nivel = Math.floor(pontuacao/500);
+
+    //exibe nivel
+    $("#nivel").html(nivel);
+
 
     if(config.timeout > 300)
         config.timeout = config.timeout - (nivel * 100);  
@@ -365,6 +379,10 @@ function gameOver(){
         }
 
         linhasEliminadas += pontos.length;
+
+        //exibe quantidade de linhas eliminadas
+        $("#linhasEliminadas").html(linhasEliminadas);
+
 
         pontuacao += ((PONTO*pontos.length)*pontos.length);
         $("#pontos").html(pontuacao);
