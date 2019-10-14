@@ -116,7 +116,7 @@ r1 = 0; r2 = 0; r3 = 0;r4 = 0; r5 = 0;
 tabuleiro = []; //guardará todos os elementos que já subiram
 proximo = -1; // guarda o indice do proximo elemento a se jogar
 tempoPartida = 0; // guarda o tempo de partida
-
+name;
 gameCanvas = null; //guarda o DOM do canvas
 tetris = null;  //trata o canvas
 
@@ -289,7 +289,7 @@ function pausaGame(){
 function gameOver(){
     pausaGame();
     status = GAMEOVER;
-    ini = document.forms["form"]["ini"].value;
+    ini = prompt("Iniciais do jogador");
     rankSet(pontuacao);
 }
 
