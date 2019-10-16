@@ -466,8 +466,8 @@ function escreveProximo(){
 
     // pega o tamanho dos elementos
     var blocos = ELEMENTOSGAME[proximo].posicao;
-    var blocoAltura = altura/5 ;
-    var blocoLargura = largura/5 ;
+    var blocoAltura = altura/4 ;
+    var blocoLargura = largura/4 ;
 
 
 
