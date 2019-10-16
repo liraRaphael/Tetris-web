@@ -167,7 +167,7 @@ function carregaConfig(){
     var e = $("#"+TAGCANVAS);
 
     
-    clearInterval(tempoPartida);
+    clearInterval(config.cronometro);
     clearInterval(config.loop);
 
     //verica o tamanho do jogo
