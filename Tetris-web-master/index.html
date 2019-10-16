@@ -3,17 +3,12 @@
     <head>
         <title>Tetris In the Mirror</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no">
-
         <link rel="stylesheet" type="text/css" href="tema.css">
     </head>
     <body>
-        <header class="navbar">
-            <h2>Tetris In the Mirror</h2>
-        </header>
 
         <section>
-
+            <h2>Tetris In the Mirror</h2>
             <div class="game-container">
 
                 <div class="botoes-sup">
@@ -33,16 +28,16 @@
                     <div style="height: 0px"></div>                  
                         
                         <button class="buttom" onclick="moveBloco(P)" type="button">
-                            <img id="pause" src="image/pause.jpg">
+                            <img id="pause" alt="Pausar" src="image/pause.jpg">
                         </button>
                         
                         <button class="buttom" onclick="musica()" type="button">
-                            <img id="som-image" src="image/sem-som.jpg"> 
+                            <img id="som-image" alt="Musica" src="image/sem-som.jpg"> 
                             <audio id="som" loop src="Tetris_theme.ogg"></audio>
                         </button>
                         
                         <button class="buttom" id="rk" type="button">
-                            <img src="image/rank.jpg">
+                            <img alt="ranking" src="image/rank.jpg">
                         </button>
                         
                         <br>
@@ -57,23 +52,23 @@
                         <div class="fundo">
                             
                             <button class="buttom" onclick="moveBloco(CIMA)" type="button">
-                                <img src="image/seta-top.jpg">
+                                <img  alt="Mover para cima" src="image/seta-top.jpg">
                             </button><br><br>
         
                             <button class="buttom" onclick="moveBloco(ESQUERDA)" type="button">
-                                <img src="image/seta-left.jpg">
+                                <img alt="Mover para esquerda" src="image/seta-left.jpg">
                             </button>
         
                             <button class="buttom" onclick="moveBloco(ESPACO)" type="button">
-                                <img src="image/seta-circ.jpg">
+                                <img alt="Mover para total para cima" src="image/seta-circ.jpg">
                             </button>
         
                             <button class="buttom" onclick="moveBloco(DIREITA)" type="button">
-                                <img src="image/seta-right.jpg">
+                                <img alt="Mover para direita" src="image/seta-right.jpg">
                             </button><br><br>
         
                             <button class="buttom" onclick="moveBloco(BAIXO)" type="button" style="margin-bottom: 10px;">
-                                <img src="image/seta-bottom.jpg">
+                                <img alt="Rotacionar" src="image/seta-bottom.jpg">
                             </button>
                             
                         </div>
