@@ -326,9 +326,14 @@ function pausaGame(){
 function gameOver(){
     pausaGame();
     status = GAMEOVER;
-    nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters").trim();
-    while(nomeJogador.length != 3){
-        nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters, por favor!");
+    nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters");
+    if(nomeJogador != null){
+        nomeJogador = nomeJogador.trim();
+        while(nomeJogador.length != 3){
+            nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters, por favor!");
+        }
+    }else{
+        nomeJogador = 's/n';
     }
     rankSet(pontuacao,nomeJogador);
 }
@@ -732,9 +737,9 @@ function rankSet(pontos,nome){
     }
 
     html = 'Rank<br><br>';
-    html+= '<span>Nome Ponto Nivel Linhas E.<span><br>';
+    html+= '<span>Nome Ponto Nivel Linhas Tempo<span><br>';
     for(var i=0;i<rank.length;i++){
-        html+= '<p class="ranked">'+rank[i].nome+"..."+rank[i].ponto+"..."+rank[i].nivel+"..."+rank[i].linhasEliminadas+"..."+rank[i].tempo+'</p><br>';
+        html+= '<p class="ranked">'+rank[i].nome+"..."+rank[i].ponto+"..."+rank[i].nivel+"..."+rank[i].linhasEliminadas+"..."+converteTempo(rank[i].tempo)+'</p><br>';
     }
 
     $("#rank").html(html);
