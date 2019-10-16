@@ -114,6 +114,7 @@ const TAGCANVAS = 'tetris'; // guarda o nome da id do canvas
 
 tabuleiro = []; //guardará todos os elementos que já subiram
 proximo = -1; // guarda o indice do proximo elemento a se jogar
+cProximo = null// guarda o canvas do proximo
 tempoPartida = 0; // guarda o tempo de partida
 
 
@@ -414,6 +415,8 @@ function criaBlocoAtual(){
 
     //resgata o proximo bloco
     var elemento = ELEMENTOSGAME[proximo];
+
+    
         
 
     //seta o elemento atual
@@ -433,6 +436,7 @@ function criaBlocoAtual(){
     elemAtual.posicao.esquerda = Math.floor(config.limiteLargura/2) - Math.floor(elemAtual.bloco[0].length/2) ;
     
     proximo = Math.floor(Math.random()*ELEMENTOSGAME.length);
+    escreveProximo();
 
     
     //checa se não haverá gameOver
@@ -444,6 +448,97 @@ function criaBlocoAtual(){
     $("#peca").html(elemProx);**/
     return true;    
     
+}
+
+function escreveProximo(){
+
+    //pega o elemento da proxima peça
+    var e =  $('#peca');
+
+    //seta as variaveis de altura e largura
+    var largura = e.width();
+    var altura = e.height();
+
+    //escreve no canvas a sua altura
+    e.attr('width',largura);
+    e.attr('height',altura);
+
+
+    // pega o tamanho dos elementos
+    var blocos = ELEMENTOSGAME[proximo].posicao;
+    var blocoAltura = altura/6 ;
+    var blocoLargura = largura/6 ;
+
+    //auxilares para a centralização da peça
+    var marginX = (3*blocoLargura) -(blocoAltura *Math.ceil(blocos.length/2));
+    var marginY = (3*blocoAltura)  -(blocoLargura *Math.ceil(blocos[0].length/2));
+
+
+
+    //limpa a tela
+    cProximo.clearRect(0, 0, largura, altura);
+
+    //desenha o elemento proximo
+    for(var i=0; i < blocos.length;i++){
+        for(var j=0; j < blocos[i].length;j++){
+            if(blocos[i][j]){
+                var eixo = {
+                    'x': marginX + (blocoLargura * (j)),
+                    'y': marginY + (blocoAltura  * (i)) 
+                } ;
+                cProximo.fillStyle='rgb('+ELEMENTOSGAME[proximo].cor+')';
+                cProximo.fillRect(
+                    eixo.x,
+                    eixo.y,
+                    blocoAltura,
+                    blocoLargura
+                );
+                            
+            }
+        }
+    }
+
+    //gera linhas
+    for(var i=0; i < 6;i++){
+        for(var j=0; j < 6;j++){
+
+            var eixo = {
+                'x': config.larguraElemento * j,
+                'y': (config.alturaElemento  * (config.limiteAltura-1)) - 
+                     (config.alturaElemento  * i)
+            } ;
+
+            //desenha as linhas do jogo
+            cProximo.strokeStyle = 'white';
+            cProximo.strokeRect(
+                eixo.x,
+                eixo.y,
+                blocoAltura,
+                blocoLargura
+            );
+        }
+    }
+
+    // desenha as linhas
+    for(var i=0; i < 6 ;i++){
+        for(var j=0; j < 6 ;j++){
+
+            var eixo = {
+                'x': (blocoLargura * (i)),
+                'y': (blocoAltura  * (j))
+            } ;
+
+            //desenha as linhas do jogo
+            cProximo.strokeStyle = 'white';
+            cProximo.strokeRect(
+                eixo.x,
+                eixo.y,
+                blocoAltura,
+                blocoLargura
+            );
+            
+        }
+    }
 }
 
 //aqui gerará o tabuleiro
@@ -814,6 +909,9 @@ $(document).ready(function(){
      */
     gameCanvas = document.getElementById(TAGCANVAS);
     tetris = gameCanvas.getContext('2d');   
+
+    canvasProximo = document.getElementById('peca');
+    cProximo = canvasProximo.getContext('2d');   
 
 
 
