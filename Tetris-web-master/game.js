@@ -326,11 +326,10 @@ function pausaGame(){
 function gameOver(){
     pausaGame();
     status = GAMEOVER;
-    nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters");
+    nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters").trim();
     while(nomeJogador.length != 3){
         nomeJogador = prompt("Iniciais do jogador", "digite 3 caracters, por favor!");
     }
-    nomeJogador = nomeJogador + "...";
     rankSet(pontuacao,nomeJogador);
 }
 
@@ -527,10 +526,6 @@ function escreveTabuleiro(){
         tetris.font="2em Tetris";
         tetris.fillText("GAME",(config.larguraElemento*config.limiteLargura)/2,205,(config.larguraElemento*config.limiteLargura)/2);
         tetris.fillText("OVER",(config.larguraElemento*config.limiteLargura)/2,255,(config.larguraElemento*config.limiteLargura)/2);    
-    }
-
-    function show(){
-        var name = alert("Iniciais do jogador:","");
     }
 
     //caso dê gameouver - avise na tela
@@ -736,23 +731,16 @@ function rankSet(pontos,nome){
         rank.splice(i,rank.length - 5);
     }
 
-    html = 'Rank<br>'
+    html = 'Rank<br><br>';
+    html+= '<span>Nome Ponto Nivel Linhas E.<span><br>';
     for(var i=0;i<rank.length;i++){
-        html+= '<p class="ranked">'+rank[i].nome+rank[i].ponto+'</p><br>';
+        html+= '<p class="ranked">'+rank[i].nome+"..."+rank[i].ponto+"..."+rank[i].nivel+"..."+rank[i].linhasEliminadas+"..."+rank[i].tempo+'</p><br>';
     }
 
     $("#rank").html(html);
 
 }
 
-$("#rk").click(function(){
-    if(document.getElementById("rank").style.display == 'none'){
-        $("#rank").show();
-    }
-    else{
-        $("#rank").hide();
-    }
-});
 
 //tratará os movimentos dos bloquinhos
 function moveBloco(tipo){
@@ -838,6 +826,7 @@ $(document).ready(function(){
     //inicializa as variaveis do game
     carregaConfig();
     
+    
 
 
     /**
@@ -852,6 +841,18 @@ $(document).ready(function(){
     $(window).on('keyup',function(e){
         moveBloco(e.keyCode);        
     });
+
+    $("#rk").click(function(){
+        var visivel = $("#rank").is(":visible");
+        if(!visivel){
+            $("#rank").show();
+            pausaGame();
+        }
+        else{
+            $("#rank").hide();
+            rodarGame();
+        }
+    });
     
     $("#tamanhoP").on('click',function(e){
        $("#tetris").removeClass('modo-22x44').removeClass('modo-10x20').addClass('modo-10x20');
@@ -862,7 +863,3 @@ $(document).ready(function(){
         carregaConfig();
     });
 });
-
-function tamanhoTabuleiro(){
-    
-}
