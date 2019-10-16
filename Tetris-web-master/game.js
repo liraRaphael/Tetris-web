@@ -466,12 +466,8 @@ function escreveProximo(){
 
     // pega o tamanho dos elementos
     var blocos = ELEMENTOSGAME[proximo].posicao;
-    var blocoAltura = altura/6 ;
-    var blocoLargura = largura/6 ;
-
-    //auxilares para a centralização da peça
-    var marginX = (3*blocoLargura) -(blocoAltura *Math.ceil(blocos.length/2));
-    var marginY = (3*blocoAltura)  -(blocoLargura *Math.ceil(blocos[0].length/2));
+    var blocoAltura = altura/5 ;
+    var blocoLargura = largura/5 ;
 
 
 
@@ -483,8 +479,8 @@ function escreveProximo(){
         for(var j=0; j < blocos[i].length;j++){
             if(blocos[i][j]){
                 var eixo = {
-                    'x': marginX + (blocoLargura * (j)),
-                    'y': marginY + (blocoAltura  * (i)) 
+                    'x':  (blocoLargura * (j)),
+                    'y':  (blocoAltura  * (i)) 
                 } ;
                 cProximo.fillStyle='rgb('+ELEMENTOSGAME[proximo].cor+')';
                 cProximo.fillRect(
@@ -498,26 +494,6 @@ function escreveProximo(){
         }
     }
 
-    //gera linhas
-    for(var i=0; i < 6;i++){
-        for(var j=0; j < 6;j++){
-
-            var eixo = {
-                'x': config.larguraElemento * j,
-                'y': (config.alturaElemento  * (config.limiteAltura-1)) - 
-                     (config.alturaElemento  * i)
-            } ;
-
-            //desenha as linhas do jogo
-            cProximo.strokeStyle = 'white';
-            cProximo.strokeRect(
-                eixo.x,
-                eixo.y,
-                blocoAltura,
-                blocoLargura
-            );
-        }
-    }
 
     // desenha as linhas
     for(var i=0; i < 6 ;i++){
